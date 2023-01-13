@@ -2,25 +2,19 @@ require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
 })
 
-const contentfulConfig = {
-  spaceId: process.env.CONTENTFUL_SPACE_ID,
-  accessToken: process.env.CONTENTFUL_API_KEY
-}
-
-// if you want to use the preview API please define
-// CONTENTFUL_HOST in your environment config
-// the `host` property should map to `preview.contentful.com`
-// https://www.contentful.com/developers/docs/references/content-preview-api/#/reference/spaces/space/get-a-space/console/js
-if (process.env.CONTENTFUL_HOST) {
-  contentfulConfig.host = process.env.CONTENTFUL_HOST
-}
-
-const { spaceId, accessToken } = contentfulConfig
-
-if (!spaceId || !accessToken) {
-  throw new Error(
-    'Contentful spaceId and the access token need to be provided.'
-  )
+let contentfulOptions = {}
+if (process.env.CONTEXT === "production") {
+    contentfulOptions = {
+        spaceId: process.env.CONTENTFUL_SPACE_ID,
+        accessToken: process.env.CONTENTFUL_TOKEN,
+        host: process.env.CONTENTFUL_HOST,
+    }
+} else {
+    contentfulOptions = {
+        spaceId: process.env.CONTENTFUL_SPACE_ID,
+        accessToken: process.env.CONTENTFUL_PREVIEW_TOKEN,
+        host: process.env.CONTENTFUL_PREVIEW_HOST,
+    }
 }
 
 module.exports = {
@@ -35,11 +29,7 @@ module.exports = {
     'gatsby-plugin-sharp',
     {
       resolve: 'gatsby-source-contentful',
-      options: {
-        spaceId: process.env.CONTENTFUL_SPACE_ID,
-        accessToken: process.env.CONTENTFUL_API_KEY,
-        host: process.env.CONTENTFUL_HOST || 'cdn.contentful.com'
-      }
+      options: contentfulOptions,
     },
   ],
 }
