@@ -5,13 +5,13 @@ require('dotenv').config({
 let contentfulOptions = {}
 if (process.env.CONTEXT === "production") {
     contentfulOptions = {
-        spaceId: process.env.CONTENTFUL_SPACE,
+        spaceId: process.env.CONTENTFUL_SPACE_ID,
         accessToken: process.env.CONTENTFUL_TOKEN,
         host: process.env.CONTENTFUL_HOST,
     }
 } else {
     contentfulOptions = {
-        spaceId: process.env.CONTENTFUL_SPACE,
+        spaceId: process.env.CONTENTFUL_SPACE_ID,
         accessToken: process.env.CONTENTFUL_PREVIEW_TOKEN,
         host: process.env.CONTENTFUL_PREVIEW_HOST,
     }
