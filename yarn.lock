@@ -7036,7 +7036,7 @@ gatsby-recipes@^0.9.3:
     xstate "^4.9.1"
     yoga-layout-prebuilt "^1.9.6"
 
-gatsby-source-contentful@^2.2.9:
+gatsby-source-contentful@^2.3.56:
   version "2.3.56"
   resolved "https://registry.npmjs.org/gatsby-source-contentful/-/gatsby-source-contentful-2.3.56.tgz"
   integrity sha512-E2t0U9p5vg/qgdEQodTzIFDlOohjMg+uzmQEhA4ZB6/jahkdOwYEHxYsXVF0/UQmDVKx016wYY3ECMLo1nodvQ==
